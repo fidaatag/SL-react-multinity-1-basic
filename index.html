@@ -10,15 +10,18 @@
     <!-- <H1>Hello from HTML</H1> -->
     <div id="root"></div>
 
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script>
         const root = document.querySelector('#root');
 
-        const element = document.createElement('h1');
-        element.textContent = 'Hello from JS!';
-        element.className = 'heading-1';
+        const element = React.createElement('h1', {
+            children: 'Hello form react',
+            className: 'heading-1',
+        });
 
         // render untuk memunculkan element
-        root.appendChild(element);
+        ReactDOM.render(element, root);
     </script>
 </body>
 </html>
