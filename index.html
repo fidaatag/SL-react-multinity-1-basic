@@ -15,9 +15,28 @@
     <script>
         const root = document.querySelector('#root');
 
-        const element = React.createElement('h1', {
-            children: 'Hello form react',
-            className: 'heading-1',
+        const p1 = React.createElement('p', {
+            children: 'Hello paragraf 1',
+        });
+        const p2 = React.createElement('p', {
+            children: 'Hello paragraf 2',
+        });
+
+        /** Misal ada case : 
+         * tidak boleh menggunakan div,
+         * harus dirender tanpa ada nesting,
+         * tidak mengunakan parent sebegai wraper
+         * meminimalisir element u/ memudahkan styling css
+         * ---------
+         * bisa gunakan React.Fragment
+         
+        const element = React.createElement('div', {
+            children: [p1, p2],
+            
+        }); **/
+
+        const element = React.createElement(React.Fragment, {
+            children: [p1, p2],
         });
 
         // render untuk memunculkan element
