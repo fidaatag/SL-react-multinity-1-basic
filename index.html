@@ -15,29 +15,68 @@
     <script>
         const root = document.querySelector('#root');
 
-        const p1 = React.createElement('p', {
-            children: 'Hello paragraf 1',
+        const li = React.createElement('li', {
+            children: 'Orange',
         });
-        const p2 = React.createElement('p', {
-            children: 'Hello paragraf 2',
+        const li2 = React.createElement('li', {
+            children: 'Grape',
+        });
+        const li3 = React.createElement('li', {
+            children: 'Apple',
         });
 
-        /** Misal ada case : 
-         * tidak boleh menggunakan div,
-         * harus dirender tanpa ada nesting,
-         * tidak mengunakan parent sebegai wraper
-         * meminimalisir element u/ memudahkan styling css
-         * ---------
-         * bisa gunakan React.Fragment
-         
-        const element = React.createElement('div', {
-            children: [p1, p2],
-            
-        }); **/
-
-        const element = React.createElement(React.Fragment, {
-            children: [p1, p2],
+        const element = React.createElement('ul', {
+            children: [li, li2, li3],
+            className: 'list',
         });
+
+        /** Cara lain menulis ul-li
+         * 
+         * ---------------------
+         * Contoh 1 : li, li2, li3 ditempatkan di parameter 2,3,4
+         * ---------------------
+        const element = React.createElement('ul',
+            { className: 'list' },      // parameter 1
+            li,                         // parameter 2
+            li2,                        // parameter 3
+            li3,                        // parameter 4
+        );
+
+
+         * ---------------------
+         * Contoh 2 : createElement langsung di paramter
+         * ---------------------
+        const element = React.createElement('ul',
+            { className: 'list' },
+            React.createElement('li', null, 'Orange'),
+            React.createElement('li', null, 'Grape'),
+            React.createElement('li', null, 'Apple'),
+        );
+
+
+        /** untuk menulis content tidak harus didalam children: / parameter 1
+         * paramater 1 - seterusnya dianggap children dari React.createElement
+         * 
+         * ---------------------
+         * Contoh 1 : content ada di parameter 3
+         * ---------------------
+        const element = React.createElement(
+            'ul',                       // parameter 1
+            null,                       // parameter 2
+            'Hello from content'        // parameter 3
+        );
+
+
+         * ---------------------
+         * Contoh 2 : content ada di parameter 3, 4, 5
+         * ---------------------
+        const element = React.createElement(
+            'ul',                        // parameter 1
+            { className: 'list' },       // parameter 2
+            'Hello from content',        // parameter 3
+            'Hello fidaa',               // parameter 4
+            'Apa Kabar?',                // parameter 5
+        ); **/
 
         // render untuk memunculkan element
         ReactDOM.render(element, root);
