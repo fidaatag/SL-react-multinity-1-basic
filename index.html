@@ -16,40 +16,45 @@
     <script type="text/babel">
         const root = document.querySelector('#root');
 
-        /** katanya : cara ini kurang 'elegan', hahaha
-         *  gunakan react component biar lebih elegan
-        
-        function hallo(name) {
-            return <p>Halo {name}</p>
+        function tick() {
+            /** Render ala react
+             *  hanyak akan merender element yg memang butuh berubah seperti jam
+             *  lebih efisien dan menghemat memori
+             **/
+            const element = (
+                <div>
+                    <h1>Sekarang Jam</h1>
+                    <h2>{new Date().toLocaleTimeString()}</h2>
+                </div>
+            );
+
+            // render untuk memunculkan element
+            ReactDOM.render(element, root);
+
+            
+            /** Template literal - cara vanilla js
+             *  semua element yg ada didalam div dirender 
+             *  namun, untuk bisa mengatur agar hanya jam saja yang terupdate cukup sulit
+             *  cara ini tidak efiesien, 
+             *  terutama saat terdapat eventhandler, dan juga
+             *  membuat memori lebih banyak digunakan
+             * 
+             
+            const element = `
+                <div>
+                    <h1>Sekarang Jam</h1>
+                    ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+
+            // render untuk memunculkan element
+            root.innerHTML = element **/
         }
 
-        const element = (
-            <>
-                {hallo('Fidaa')}
-                {hallo('Budi')}
-                {hallo('Andi')}
-            </>
-        ); **/ 
-
-        
-        /** Cara menggunakan react componen
-         *  harus diawali dengan huruf kapital
-         *  gunakan parameter porps (default) u/ menampung banyak paramter 
-         **/
-        function Hallo(props) {
-            return <p>Halo {props.name}</p>
-        }
-
-        const element = (
-            <>
-                <Hallo name='Fidaa'/>
-                <Hallo name='Budi'/>
-                <Hallo name='Andi'/>
-            </>
-        );
-
-        // render untuk memunculkan element
-        ReactDOM.render(element, root);
+        tick();
+        setInterval(function() {
+            tick();
+        }, 1000);
     </script>
 </body>
 </html>
