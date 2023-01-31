@@ -16,13 +16,30 @@
     <script type="text/babel">
         const root = document.querySelector('#root');
 
+        // embed element
+        const name = 'Fidaa';
+        const idlain = 'heading-1';
+        function siapa(text) {
+            return text.toUpperCase();
+        }
+
         const element = (
-            <ul>
-                <li>Orange</li>
-                <li>Grape</li>
-                <li>Apple</li>
-            </ul>
+            <h1 className='heading-1' id={idlain}>
+                Hello {siapa(name)}
+            </h1>
         );
+        
+        /** sub-closing empty element
+         * khusus empty element, untuk bisa berjalan di broser saat menggunakan JSX
+         * gunakan sub-closing atau tambahkan '/' pada akhir penutup element
+         * 
+         * ------------
+         * contoh : menampilkan img di JSX dengan tambahan sub-closing
+         * ------------
+         
+        const element = (
+            <img src='https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg' />
+        ); **/
 
         // render untuk memunculkan element
         ReactDOM.render(element, root);
